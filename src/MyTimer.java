@@ -15,34 +15,19 @@ public class MyTimer extends Thread {
 
     @Override
     public void run() {
-        for (int i = second; i >= 0; i--) {
-            System.out.println(minute + " : " + i);
-            try {
-                Thread.sleep(1000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        }
-        if (minute > 0) {
-            for (int i = minute - 1; i >= 0; i--) {
-                for (int j = 60; j >= 0; j--) {
-                    if (j == 0) {
-                        try {
-                            Thread.sleep(1000);
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
-                        }
-                        System.out.println(i + " : " + j);
-                        break;
-                    }
-                    try {
-                        Thread.sleep(1000);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                    System.out.println(i + " : " + j);
+        minute += 1;
+        do{
+            minute -= 1;
+            for (int i = second; i >= 0; i--) {
+                System.out.println(minute + " : " + i);
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
                 }
             }
+            second = 60;
         }
+        while(minute != 0);
     }
 }
